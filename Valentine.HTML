@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ammu ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.15);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+    max-width: 400px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  #yes {
+    background: #ff4b5c;
+    color: white;
+  }
+
+  #no {
+    background: white;
+    color: #ff4b5c;
+    position: absolute;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .message {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    animation: fadeIn 2s ease;
+  }
+
+  .love {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Romantic Music (plays after YES) -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/09/audio_4f3b6d8c2a.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="question">
+  <h1>Ammu Don,<br>will you be my Valentine? 💖</h1>
+  <button id="yes">Yes 💕</button>
+  <button id="no">No</button>
+</div>
+
+<div class="card hidden" id="answer">
+  <div class="message">
+    You didn’t just say yes…<br>
+    you chose my heart 💞<br><br>
+    Every moment with you feels like destiny.
+  </div>
+
+  <div class="love">❤️ I LOVE YOU ❤️</div>
+
+  <div class="message">
+    Forever yours,<br>
+    <b>Raghav</b>
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const question = document.getElementById("question");
+  const answer = document.getElementById("answer");
+  const music = document.getElementById("music");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  // YES click
+  yesBtn.addEventListener("click", () => {
+  question.classList.add("hidden");
+  answer.classList.remove("hidden");
+
+  music.volume = 0.4;
+  music.play();
+  startHearts();
+
+  // WhatsApp notification to YOU
+  setTimeout(() => {
+    window.location.href =
+      "https://wa.me/919911047247?text=I%20said%20YES%20to%20you%20Raghav%20💖%20–%20Ammu";
+  }, 2500);
+});
+
+
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
